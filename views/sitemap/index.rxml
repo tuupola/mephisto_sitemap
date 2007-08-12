@@ -1,0 +1,28 @@
+xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
+xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") do
+
+  @sections.each do |section|  
+    xml.url do  
+      xml.loc url_for :only_path  => false,
+                      :action     => "dispatch", 
+                      :controller => "mephisto",
+                      :path       => section.to_url
+      xml.lastmod w3c_date(section.articles.find_by_position.updated_at)
+      xml.changefreq "daily"
+      xml.priority "0.9"
+    end
+  end
+    
+  @articles.each do |article|  
+    xml.url do  
+      xml.loc url_for :only_path  => false,
+                      :action     => "dispatch", 
+                      :controller => "mephisto",
+                      :path       => site.permalink_for(article).gsub!(/^\//, '')
+      xml.lastmod w3c_date(article.updated_at)
+      xml.changefreq "daily"
+      xml.priority "0.5"
+    end
+  end
+  
+end
