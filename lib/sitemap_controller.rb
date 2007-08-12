@@ -4,7 +4,9 @@ class SitemapController < ApplicationController
   layout nil
 
   def index
-    @articles = Article.find(:all, :conditions => "published_at is not null")  
+    Article.with_published do
+      @articles = site.articles.find(:all)
+    end
     @sections = site.sections.find(:all)  
   end
 
