@@ -1,6 +1,6 @@
 xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
 xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") do
-
+  
   @sections.each do |section|  
     xml.url do  
       xml.loc url_for :only_path  => false,
@@ -8,8 +8,13 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") do
                       :controller => "mephisto",
                       :path       => section.to_url
       xml.lastmod w3c_date(section.articles.find_by_position.updated_at)
-      xml.changefreq "daily"
-      xml.priority "0.9"
+      if "home" == section.name.downcase 
+        xml.changefreq @plugin.frontpage_frequency
+        xml.priority @plugin.frontpage_priority
+      else 
+        xml.changefreq @plugin.section_frequency
+        xml.priority @plugin.section_priority        
+      end
     end
   end
     
@@ -20,8 +25,8 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") do
                       :controller => "mephisto",
                       :path       => site.permalink_for(article).gsub!(/^\//, '')
       xml.lastmod w3c_date(article.updated_at)
-      xml.changefreq "daily"
-      xml.priority "0.5"
+      xml.changefreq  @plugin.article_frequency
+      xml.priority @plugin.article_priority
     end
   end
   

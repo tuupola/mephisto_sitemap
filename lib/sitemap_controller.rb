@@ -7,7 +7,8 @@ class SitemapController < ApplicationController
     Article.with_published do
       @articles = site.articles.find(:all)
     end
-    @sections = site.sections.find(:all)  
+    @sections = site.sections.find(:all) 
+    @plugin   = Mephisto::Plugin[:sitemap] 
   end
 
 end
