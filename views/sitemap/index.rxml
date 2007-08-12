@@ -1,7 +1,8 @@
 xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
 xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") do
   
-  @sections.each do |section|  
+  @sections.each do |section|
+    next if section.articles.find_by_position.nil?
     xml.url do  
       xml.loc url_for :only_path  => false,
                       :action     => "dispatch", 
