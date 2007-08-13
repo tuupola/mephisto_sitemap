@@ -1,0 +1,23 @@
+MephistoSitemap
+===============
+Mephisto plugin which implements (Google, MSN, Yahoo ) Sitemap protocol.
+
+Installation
+============
+script/plugin install http://svn.appelsiini.net/svn/rails/plugins/mephisto_sitemap/
+
+Restart your WEBrick or mongrel. Wait for your site to receive some Google fame. Optionally change default configuration options through Mephisto admin interface.
+
+Credits
+=======
+This plugin is based on work by Joseph Moore and Greg Benedict.
+
+http://www.40withegg.com/2007/1/14/sitemap-generator-for-mephisto/
+http://www.gregbenedict.com/2007/08/14/auto-generated-sitemapsxml-file-for-mephi
+sto/
+
+Licence
+=======
+Copyright (c) 2007 Mika Tuupola. Licensed under the MIT License.
+
+
