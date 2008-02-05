@@ -4,10 +4,10 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") do
   @sections.each do |section|
     next if section.articles.find_by_position.nil?
     xml.url do  
-      xml.loc url_for :only_path  => false,
+      xml.loc url_for(:only_path  => false,
                       :action     => "dispatch", 
                       :controller => "mephisto",
-                      :path       => section.to_url
+                      :path       => section.to_url)
       xml.lastmod w3c_date(section.articles.find_by_position.updated_at)
       if "home" == section.name.downcase 
         xml.changefreq @plugin.frontpage_frequency
@@ -21,10 +21,10 @@ xml.urlset(:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9") do
     
   @articles.each do |article|  
     xml.url do  
-      xml.loc url_for :only_path  => false,
+      xml.loc url_for(:only_path  => false,
                       :action     => "dispatch", 
                       :controller => "mephisto",
-                      :path       => site.permalink_for(article).gsub!(/^\//, '')
+                      :path       => site.permalink_for(article).gsub!(/^\//, ''))
       xml.lastmod w3c_date(article.updated_at)
       xml.changefreq  @plugin.article_frequency
       xml.priority @plugin.article_priority
