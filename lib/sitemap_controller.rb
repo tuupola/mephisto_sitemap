@@ -1,5 +1,5 @@
 class SitemapController < ApplicationController
-  self.template_root = File.join(File.dirname(__FILE__),'../', 'views')
+  self.view_paths = File.join(File.dirname(__FILE__), '../', 'views') 
   session :off  
   layout nil
 
