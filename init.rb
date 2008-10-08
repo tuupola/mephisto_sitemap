@@ -1,2 +1,10 @@
-require 'sitemap'
-Dependencies.load_once_paths.delete(lib_path)
+#require 'sitemap'
+#Dependencies.load_once_paths.delete(lib_path)
+
+option :site_uri, 'http://www.example.com'
+option :frontpage_priority, 0.9
+option :article_priority, 0.9
+option :section_priority, 0.5
+option :frontpage_frequency, 'daily'
+option :section_frequency, 'daily'
+option :article_frequency, 'daily'
