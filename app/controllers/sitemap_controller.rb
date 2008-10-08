@@ -1,5 +1,4 @@
 class SitemapController < ApplicationController
-  self.view_paths = File.join(File.dirname(__FILE__), '../', 'views') 
   session :off  
   layout nil
 
@@ -8,7 +7,7 @@ class SitemapController < ApplicationController
       @articles = site.articles.find(:all)
     end
     @sections = site.sections.find(:all) 
-    @plugin   = Mephisto::Plugin[:sitemap] 
+    @plugin   = Engines.plugins[:mephisto_sitemap]
   end
 
 end
